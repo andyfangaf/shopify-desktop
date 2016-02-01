@@ -1,0 +1,5 @@
+{
+	"name": "projectname",
+	"viewsDir": "client/templates/",
+	"layoutsDir": "client/"
+}
