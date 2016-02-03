@@ -1,0 +1,34 @@
+{
+  "name": "rebound-js",
+  "homepage": "https://github.com/facebook/rebound-js",
+  "authors": [
+    "Will Bailey <will.bailey@gmail.com>"
+  ],
+  "description": "A simple library for modeling spring dynamics",
+  "main": "rebound.js",
+  "keywords": [
+    "animation"
+  ],
+  "license": "2-clause BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "version": "0.0.10",
+  "_release": "0.0.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.10",
+    "commit": "c06085d0ff58fe21d4b627bd6710bb7ae475d6a9"
+  },
+  "_source": "git://github.com/facebook/rebound-js.git",
+  "_target": "0.0.10",
+  "_originalSource": "rebound-js"
+}

@@ -1,11 +1,11 @@
 MainLayout = React.createClass({
 	render() {
 		return (
-			<div>
-			mainlayout
-				{this.props.content}
-				{this.props.footer}
-			</div>
-		)
+		        <div>
+		        {this.props.header}
+		        {this.props.content}
+		        {this.props.footer}
+		        </div>
+		        )
 	}
 });

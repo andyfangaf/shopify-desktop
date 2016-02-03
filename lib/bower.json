@@ -1,0 +1,8 @@
+{
+  "name": "shopify-desktop",
+  "version": "0.0.1",
+  "dependencies": {
+  	"rebound-js": "0.0.10"
+  },
+  "private": true
+}

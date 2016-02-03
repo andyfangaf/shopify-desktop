@@ -2,7 +2,8 @@ FlowRouter.route('/', {
 	name: 'Home',
 	action() {
 		ReactLayout.render(MainLayout, {
-			content: <Login/>,
+			header: <Metabar/>,
+			content: <Site/>,
 			footer: <Actionbar/>
 		});
 	}

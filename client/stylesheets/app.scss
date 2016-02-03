@@ -1,0 +1,47 @@
+$bg-color: #31373d;
+$color: #96a7b6;
+$primary: #479ccf;
+
+body {
+  background: #ebeef0;
+}
+
+.actionbar {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  background: $bg-color;
+  .ui.text.menu .item {
+    color: $color;
+    &.active {
+      color: #fff;
+    }
+  }
+}
+.metabar {
+  padding-right: 50px;
+}
+.ui.text.menu {
+  margin: 0;
+  padding: 1em .5em;
+}
+
+.ui.button {
+  font-weight: 100;
+}
+
+.ui.modal {
+  height: 300px;
+}
+
+@-webkit-keyframes giftSlideUp{0%{background-position:center 0}100%{background-position:center -995px}}
+
+.import-theme {
+  background: #e5e9ec url(loginbg.png) repeat center 0;
+  border-color: #d7dde1;
+  -webkit-animation: giftSlideUp 30s linear 0s infinite;
+  animation: giftSlideUp 30s linear 0s infinite;
+  width: 100%;
+  color: #000;
+  height: 100%;
+}
