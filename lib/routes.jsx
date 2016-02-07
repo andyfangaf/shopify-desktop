@@ -8,3 +8,9 @@ FlowRouter.route('/', {
 		});
 	}
 });
+FlowRouter.route('/login', {
+	name: 'Login',
+	action() {
+		ReactLayout.render(LoginLayout);
+	}
+});
