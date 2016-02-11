@@ -21,6 +21,9 @@ body {
   right: 0;
   width: 100%;
   background: $bg-color;
+  .ui.container {
+    max-width: 900px !important;
+  }
   .ui.text.menu .item {
     color: $color;
     &.active {
@@ -114,8 +117,9 @@ body {
   }
   .footer {
     position: absolute;
-    bottom: 30px;
+    bottom: 0;
     right: 30px;
+    min-width: 300px;
   }
 }
 .pusher {

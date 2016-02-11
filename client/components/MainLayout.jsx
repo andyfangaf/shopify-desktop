@@ -52,7 +52,14 @@ MainLayout = React.createClass({
                   </div>
                </div>
                <div className="footer">
-                  <p>Changes are automatically saved.</p>
+                  <a href="https://wayne-tech.myshopify.com/admin" target="_blank" data-content="Go to Shopify Admin" data-variation="inverted">
+                     <img className="ui rounded image spaced floated left" src="//placehold.it/40x40"/>
+                     <div>
+                        wayne-tech
+                        <br></br>
+                        <span>Andy Fang</span>
+                     </div>
+                  </a>
                </div>
             </div>
             <div className="pusher">

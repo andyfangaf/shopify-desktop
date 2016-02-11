@@ -8,7 +8,7 @@ LoginLayout = React.createClass({
          onAuth: function(accessToken) {
             let visitUUID = uuid.new();
             Session.set('visitUUID', visitUUID);
-            Shopify.addKeyset(visitUUID, {access_token: accessToken});
+            Meteor.call('addKeyset', visitUUID);
             FlowRouter.go('/');
             $('.ui.modal.theme-import').modal('setting', {
                closable: false,

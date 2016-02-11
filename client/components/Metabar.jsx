@@ -5,14 +5,9 @@ Metabar = React.createClass({
       });
    },
    render() {
-      let typeScript = `try {
-        Typekit.load({async: true});
-     } catch (e) {}`;
       return (
          <div className="ui text menu metabar">
             <script src="https://use.typekit.net/cnw7lzi.js"></script>
-            <script>
-               {typeScript}</script>
             <div className="ui modal basic help">
                <div className="ui centered grid">
                   <h1 className="tk-chalky">Instructions</h1>
@@ -33,10 +28,6 @@ Metabar = React.createClass({
                   <i className="notched circle loading icon"></i>
                   Loading theme...</h1>
             </div>
-            <a className="item left menu" href="https://wayne-tech.myshopify.com/admin" target="_blank">
-               <img className="ui rounded image spaced" src="//placehold.it/40x40"/>
-               <span>wayne-tech</span>
-            </a>
             <a className="item right menu">
                <button className="large ui icon button help circular">
                   <i className="help icon"></i>
