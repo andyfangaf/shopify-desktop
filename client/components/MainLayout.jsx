@@ -28,17 +28,12 @@ MainLayout = React.createClass({
    },
    render() {
       window.addEventListener('keydown', this.switchModes);
-      let publishButton = this.state.published
-         ? 'ui primary button'
-         : 'ui primary button disabled';
-      let editableState = this.state.editable
-         ? 'EDIT MODE'
-         : 'PREVIEW MODE';
       return (
          <div className="main">
             <div className="ui sidebar inverted vertical menu fixed right wide visible">
                <div className="header">
-                  <h1>Add a product</h1>
+                  <h1>
+                     <i className="ui icon shop"></i>Add a product</h1>
                </div>
                <div className="content">
                   <div className="ui inverted form">
@@ -57,7 +52,7 @@ MainLayout = React.createClass({
                   </div>
                </div>
                <div className="footer">
-                  <button className="ui primary button">Save changes</button>
+                  <p>Changes are automatically saved.</p>
                </div>
             </div>
             <div className="pusher">
@@ -66,7 +61,16 @@ MainLayout = React.createClass({
                <div className="actionbar">
                   <div className="ui container">
                      <div className="ui text menu">
-                        <div className="header item">{editableState}</div>
+                        <div className="header item" style={this.state.editable
+                           ? {
+                              color: '#fff'
+                           }
+                           : null}>
+                           <i className={this.state.editable
+                              ? 'ui icon edit'
+                              : 'ui icon idea'}></i>{this.state.editable
+                              ? 'EDIT MODE'
+                              : 'PREVIEW MODE'}</div>
                         <a className={this.state.screenSize == 'desktop'
                            ? 'active item'
                            : 'item'} onClick={this.switchDesktop}>
@@ -85,7 +89,9 @@ MainLayout = React.createClass({
                         </a>
                         <div className="right menu">
                            <a className="item">
-                              <span className={publishButton}>Publish to Shopify</span>
+                              <span className={this.state.published
+                                 ? 'ui primary button'
+                                 : 'ui primary button disabled'}>Publish to Shopify</span>
                            </a>
                         </div>
                      </div>

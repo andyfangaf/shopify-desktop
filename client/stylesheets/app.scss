@@ -13,6 +13,7 @@ $tablet_size: 70%;
 $mobile_size: 50%;
 body {
   background: #ebeef0;
+  -webkit-transition-duration: 1s;
 }
 .actionbar {
   position: absolute;
@@ -93,6 +94,7 @@ body {
 }
 .ui.segment.site {
   margin: 3em;
+  -webkit-transition-duration: 0.5s;
   &.desktop {
     width: $desktop_size;
   }
@@ -120,4 +122,8 @@ body {
   position: absolute;
   left: 0;
   transform: none !important;
+}
+.ui.text.menu .header.item {
+  // edit/ preview header should not change layout of actionbar
+  width: 135px;
 }
