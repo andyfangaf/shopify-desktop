@@ -8,9 +8,9 @@ $tolerance: 10; // $tolerance/100
 /*====================================
 =            SCREEN SIZES            =
 ====================================*/
-$desktop_size: 1024px;
-$tablet_size: 760px;
-$mobile_size: 360px;
+$desktop_size: 100%;
+$tablet_size: 70%;
+$mobile_size: 50%;
 body {
   background: #ebeef0;
 }
@@ -106,6 +106,14 @@ body {
 .ui.sidebar {
   padding: 1em 2em;
   color: #96a7b6;
+  .header {
+    padding: 2em 0;
+  }
+  .footer {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
 }
 .pusher {
   height: 100vh;

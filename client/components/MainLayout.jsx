@@ -20,7 +20,7 @@ MainLayout = React.createClass({
       this.setState({screenSize: 'desktop'});
    },
    switchModes(e) {
-      if (e.keyCode == '65') {
+      if (e.keyCode == '18') {
          this.setState({
             editable: !this.state.editable
          });
@@ -41,12 +41,28 @@ MainLayout = React.createClass({
                   <h1>Add a product</h1>
                </div>
                <div className="content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  <div className="ui inverted form">
+                     <div className="field">
+                        <label>Product Name</label>
+                        <input type="text" placeholder="E.g. Batarang"/>
+                     </div>
+                     <div className="field">
+                        <label>Price</label>
+                        <input type="text" placeholder="E.g. $500"/>
+                     </div>
+                     <div className="field">
+                        <label>Description</label>
+                        <textarea rows="4"></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div className="footer">
+                  <button className="ui primary button">Save changes</button>
                </div>
             </div>
             <div className="pusher">
                <Metabar/>
-               <Site/>
+               <Site screenSize={this.state.screenSize}/>
                <div className="actionbar">
                   <div className="ui container">
                      <div className="ui text menu">
