@@ -1,9 +1,9 @@
 Site = React.createClass({
-	render() {
-		return (
-		        <div className="ui segment container site">
 
+    render() {
+        return (
+            <div className="ui segment desktop site">
 		        </div>
-		        )
-	}
+            )
+    }
 })

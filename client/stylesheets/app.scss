@@ -1,7 +1,17 @@
+/*==============================
+=            COLORS            =
+==============================*/
 $bg-color: #31373d;
 $color: #96a7b6;
 $primary: #70A821;
 $tolerance: 10; // $tolerance/100
+
+/*====================================
+=            SCREEN SIZES            =
+====================================*/
+$desktop_size: 1024px;
+$tablet_size: 760px;
+$mobile_size: 360px;
 
 body {
   background: #ebeef0;
@@ -63,7 +73,7 @@ body {
     }
   }
   .ui.segment.container {
-    max-width: 435px !important;
+    max-width: 475px !important;
   }
 }
 
@@ -120,5 +130,21 @@ body {
   &:hover {
     background: lighten($primary, 10);
     box-shadow: none !important;
+  }
+  &:focus {
+    background: $primary;
+  }
+}
+
+.ui.segment.site {
+  margin: 3em;
+  &.desktop {
+    width: $desktop_size;
+  }
+  &.tablet {
+    width: $tablet_size;
+  }
+  &.mobile {
+    width: $mobile_size;
   }
 }

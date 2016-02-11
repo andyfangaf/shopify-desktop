@@ -49,7 +49,9 @@ meteor@1.1.11-modules.8
 meteor-base@1.0.1
 meteor-env-dev@0.0.1-modules.8
 meteor-env-prod@0.0.1-modules.8
+meteorhacks:async@1.0.0
 meteorhacks:flow-layout@1.4.2
+meteorhacks:npm@1.5.0
 minifiers-css@1.1.8-modules.8
 minifiers-js@1.1.8-modules.8
 minimongo@1.0.11-modules.8
@@ -60,6 +62,7 @@ modules-runtime@0.5.0-modules.8
 mongo@1.1.4-modules.8
 mongo-id@1.0.1
 mquandalle:bower@1.5.2_1
+npm-container@1.2.0
 npm-mongo@1.4.40-modules.8
 observe-sequence@1.0.8-modules.8
 ordered-dict@1.0.4
@@ -76,6 +79,7 @@ reactive-var@1.0.6
 reload@1.1.5-modules.8
 retry@1.0.4
 routepolicy@1.0.7-modules.8
+rwatts:uuid@0.1.0
 semantic:ui@2.1.7
 semantic:ui-data@2.1.7
 session@1.1.2-modules.8
