@@ -1,16 +1,12 @@
 FlowRouter.route('/', {
-	name: 'Home',
-	action() {
-		ReactLayout.render(MainLayout, {
-			header: <Metabar/>,
-			content: <Site/>,
-			footer: <Actionbar/>
-		});
-	}
+   name: 'Home',
+   action() {
+      ReactLayout.render(MainLayout);
+   }
 });
 FlowRouter.route('/login', {
-	name: 'Login',
-	action() {
-		ReactLayout.render(LoginLayout);
-	}
+   name: 'Login',
+   action() {
+      ReactLayout.render(LoginLayout);
+   }
 });

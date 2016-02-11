@@ -1,9 +1,9 @@
 Login = React.createClass({
-	render() {
-		return (
-		        <div>
-		        content
-		        </div>
-		        )
-	}
+   render() {
+      return (
+         <div>
+            content
+         </div>
+      )
+   }
 })
