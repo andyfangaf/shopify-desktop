@@ -33,5 +33,8 @@ meteorhacks:npm
 
 
 npm-container
-rwatts:uuid
 stevezhu:lodash
+random
+ostrio:meteor-root
+deanius:promise
+http

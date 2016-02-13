@@ -1,0 +1,23 @@
+{
+  "name": "shopify-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^0.26.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afang/shopify-desktop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afang/shopify-desktop/issues"
+  },
+  "homepage": "https://github.com/afang/shopify-desktop#readme"
+}
