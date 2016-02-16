@@ -5,7 +5,7 @@ Site = React.createClass({
    render() {
       return (
          <div className="ui left grid">
-            <div className={`ui segment site ${this.props.screenSize}`}></div>
+            <div className={`ui segment site ${this.props.screenSize}`} contentEditable={this.props.editable}></div>
          </div>
       )
    }

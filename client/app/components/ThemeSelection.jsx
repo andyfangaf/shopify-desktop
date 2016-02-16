@@ -1,12 +1,8 @@
 ThemeSelection = React.createClass({
-   getMeteorData() {
-      return {themes: Session.get('themes')}
-   },
    setInitialState() {
       return {themeSelected: false}
    },
    componentDidMount() {
-      console.log(Session.get('themes'));
       var component = this;
       $('.ui.dropdown').dropdown({
          action(selected) { // when the theme is selected
@@ -15,8 +11,6 @@ ThemeSelection = React.createClass({
       });
    },
    render() {
-      console.log(this.data.themes);
-      console.log(Session.get('themes'));
       return (
          <div>
             <h1>
@@ -26,8 +20,8 @@ ThemeSelection = React.createClass({
                <i className="dropdown icon"></i>
                <div className="default text">Select a theme</div>
                <div className="menu">
-                  {this.data.themes.map((theme, i) => {
-                     console.log(theme, i);
+                  {this.props.themes && this.props.themes.map((theme, i) => {
+                     console.log(theme.name, i);
                      return (
                         <div className="item" key={i}>{theme.name}</div>
                      )

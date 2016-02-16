@@ -73,7 +73,7 @@ MainLayout = React.createClass({
             </div>
             <div className="pusher">
                <Metabar/>
-               <Site screenSize={this.state.screenSize}/>
+               <Site screenSize={this.state.screenSize} editable={this.state.editable}/>
                <div className="actionbar">
                   <div className="ui container">
                      <div className="ui text menu">
@@ -117,4 +117,4 @@ MainLayout = React.createClass({
          </div>
       )
    }
-})
+});

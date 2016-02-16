@@ -21,7 +21,7 @@ LoginLayout = React.createClass({
                api.getThemes((err, res) => {
                   err
                      ? console.log(err)
-                     : res.map(res => console.log(`All themes: ${res}`));
+                     : res.map((theme, i) => console.log(`Theme ${i + 1}: ${theme.name}`));
                   Session.set('themes', res);
                });
                FlowRouter.go('/');
