@@ -87,8 +87,11 @@ body {
 .ui.green.button,
 .ui.primary.button {
   background: $primary;
+  box-shadow: none !important;
+  transition-duration: 0.2s;
   &:hover {
-    background: lighten($primary, 10);
+    transition-duration: 0.2s;
+    background: darken($primary, 5);
     box-shadow: none !important;
   }
   &:focus {
