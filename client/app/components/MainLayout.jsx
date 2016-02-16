@@ -3,17 +3,20 @@ MainLayout = React.createClass({
       return {screenSize: 'desktop', published: false, editable: false}
    },
    componentDidMount() {
-      let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56
-      $('.pusher').width(pusherWidth)
+      Meteor.call('getKeysetNames', (err, res) => {
+         console.log(res);
+      });
+      let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
+      $('.pusher').width(pusherWidth);
       $(window).on('resize', _.debounce(() => {
-         let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56
-         $('.pusher').width(pusherWidth)
-      }, 50))
+         let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
+         $('.pusher').width(pusherWidth);
+      }, 50));
 
       // Promsies read themes
       Meteor.callPromise('readFile', `batman-shop-myshopify-com-launchpad-star/layout/theme.liquid`).then((res) => {
-         Meteor.callPromise('parseLiquid', res)
-      })
+         Meteor.callPromise('parseLiquid', res);
+      });
 
    },
    switchMobile() {
@@ -33,7 +36,7 @@ MainLayout = React.createClass({
       }
    },
    render() {
-      window.addEventListener('keydown', this.switchModes)
+      window.addEventListener('keydown', this.switchModes);
       return (
          <div className="main">
             <div className="ui sidebar inverted vertical menu fixed right wide visible">

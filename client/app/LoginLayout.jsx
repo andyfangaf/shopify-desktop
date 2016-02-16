@@ -2,27 +2,33 @@ LoginLayout = React.createClass({
    authenticate(e) {
       e.preventDefault();
       let storeName = ReactDOM.findDOMNode(this.refs.storeName).value.trim();
-      console.log(`Authenticating ${storeName}...`);
-      Meteor.call('addKeyset', storeName, (err, res) => {
-         Session.set('keyset', res);
-      });
-      let authenticator = new Shopify.PublicAppOAuthAuthenticator({
-         shop: storeName, api_key: '53ea809b4180e0b1db2706a6fe5ffedb', keyset: Session.get('keyset'), scopes: 'all', // request all permissions
-         onAuth: function(accessToken) {
-            FlowRouter.go('/');
-            $('.ui.modal.theme-import').modal('setting', {
-               closable: false,
-               transition: 'fade up'
-            }).modal('show');
+      Meteor.call('addKeyset', storeName, (err, keysetName) => {
+         err
+            ? console.log(err)
+            : console.log(`Authenticating ${storeName}...`);
+         Session.set('keyset', keysetName);
+         Session.set('storeName', storeName);
 
-            let api = new Shopify.API({shop: storeName, keyset: Session.get('keyset')});
-            console.log(api);
-            api.getUser((err, res) => {
-               console.log(err, res);
-            })
-         }
+         let authenticator = new Shopify.PublicAppOAuthAuthenticator({
+            shop: storeName, api_key: '53ea809b4180e0b1db2706a6fe5ffedb', keyset: 'auth', scopes: 'all', // request all permissions
+            onAuth: function(accessToken) {
+               FlowRouter.go('/');
+               $('.ui.modal.theme-import').modal('setting', {
+                  closable: false,
+                  transition: 'fade up'
+               }).modal('show');
+
+               var api = new Shopify.API({shop: Session.get('storeName'), keyset: Session.get('keyset')});
+               api.getThemes((err, res) => {
+                  err
+                     ? console.log(err)
+                     : console.log(`All themes:\n${res}`);
+
+               });
+            }
+         });
+         authenticator.openAuthTab();
       });
-      authenticator.openAuthTab();
    },
    componentDidMount() {
       $.Velocity.RegisterEffect('transition.flipYin', {
@@ -48,7 +54,7 @@ LoginLayout = React.createClass({
                <form className="ui large form" onSubmit={this.authenticate}>
                   <div className="ui action input">
                      <input type="text" placeholder="Your store name" ref="storeName"/>
-                     <input className="ui green submit button" value="Login to Shopify" type="submit"/>
+                     <input className="ui primary submit button" value="Login to Shopify" type="submit"/>
                   </div>
                </form>
             </div>

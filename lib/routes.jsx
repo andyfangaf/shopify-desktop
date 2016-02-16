@@ -1,7 +1,11 @@
 FlowRouter.route('/', {
    name: 'Home',
    action() {
-      ReactLayout.render(MainLayout);
+      if (!Session.get('keyset')) {
+         ReactLayout.render(LoginLayout);
+      } else {
+         ReactLayout.render(MainLayout);
+      }
    }
 });
 FlowRouter.route('/login', {

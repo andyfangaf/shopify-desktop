@@ -93,6 +93,7 @@ body {
   }
   &:focus {
     background: $primary;
+    outline: 0;
   }
 }
 .ui.segment.site {

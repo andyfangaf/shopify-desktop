@@ -1,29 +1,35 @@
-import fs from 'fs-extra'
-import Liquid from 'liquid-node'
+import fs from 'fs-extra';
+import Liquid from 'liquid-node';
 
-keysetNames = {}
+keysetNames = {};
+Shopify.onAuth(function(accessToken, config) {
+	var keysetName = keysetNames[config.shop];
+	Shopify.addKeyset(keysetName, {
+		access_token: accessToken,
+	});
+});
+
 Meteor.methods({
 	addKeyset(storeName) {
-		let keysetName = Random.id(17)
-		keysetNames[storeName] = keysetName
+		let keysetName = Random.id(17);
+		keysetNames[storeName] = keysetName;
 		Shopify.addKeyset(keysetName, {
-			api_key: '53ea809b4180e0b1db2706a6fe5ffedb',
-			secret: 'e00c1b1ba81c26d4b3d4142e77e64e78'
-		})
-		console.log(keysetName.secret)
-		return keysetName
+			api_key: Meteor.settings.shopify.key,
+			secret: Meteor.settings.shopify.secret
+		});
+		return keysetName;
 	},
 	readFile(themesPath) {
-		let filePath = `${Meteor.absolutePath}/public/themes/${themesPath}`
+		let filePath = `${Meteor.absolutePath}/public/themes/${themesPath}`;
 
 		return new Promise((resolve, reject) => {
 			fs.readFile(filePath, 'utf8', (err, res) => {
 				if (err) {
 					console.log(err);
-					reject(err)
+					reject(err);
 				}
 				console.log(res);
-				resolve(res)
+				resolve(res);
 			})
 		})
 	},
@@ -39,8 +45,11 @@ Meteor.methods({
 					})
 					.catch((err) => {
 						reject(err)
-					})
-			})
-		})
+					});
+			});
+		});
+	},
+	getKeysetNames() {
+		return keysetNames;
 	}
-})
+});
