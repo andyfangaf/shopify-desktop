@@ -3,9 +3,6 @@ MainLayout = React.createClass({
       return {screenSize: 'desktop', published: false, editable: false}
    },
    componentDidMount() {
-      Meteor.call('getKeysetNames', (err, res) => {
-         console.log(res);
-      });
       let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
       $('.pusher').width(pusherWidth);
       $(window).on('resize', _.debounce(() => {
@@ -13,9 +10,8 @@ MainLayout = React.createClass({
          $('.pusher').width(pusherWidth);
       }, 50));
 
-      // Promsies read themes
-      Meteor.callPromise('readFile', `batman-shop-myshopify-com-launchpad-star/layout/theme.liquid`).then((res) => {
-         Meteor.callPromise('parseLiquid', res);
+      Meteor.callPromise('readFile', 'batman-shop-myshopify-com-launchpad-star/layout/theme.liquid').then((res) => {
+         console.log(res);
       });
 
    },
