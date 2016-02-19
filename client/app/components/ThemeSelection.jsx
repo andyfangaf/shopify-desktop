@@ -1,4 +1,10 @@
 ThemeSelection = React.createClass({
+   mixins: [ReactMeteorData],
+   getMeteorData() {
+      return {
+         themes: User.find({loggedIn: true}).fetch()[0]
+      }
+   },
    setInitialState() {
       return {themeSelected: false}
    },
@@ -9,6 +15,7 @@ ThemeSelection = React.createClass({
             component.setState({themeSelected: true});
          }
       });
+      console.log(`Mounted with the prop ${this.props.themes}`);
    },
    render() {
       return (
@@ -20,7 +27,7 @@ ThemeSelection = React.createClass({
                <i className="dropdown icon"></i>
                <div className="default text">Select a theme</div>
                <div className="menu">
-                  {this.props.themes && this.props.themes.map((theme, i) => {
+                  {this.data.themes.map((theme, i) => {
                      console.log(theme.name, i);
                      return (
                         <div className="item" key={i}>{theme.name}</div>

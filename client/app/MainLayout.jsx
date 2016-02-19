@@ -10,8 +10,10 @@ MainLayout = React.createClass({
          $('.pusher').width(pusherWidth);
       }, 50));
 
-      Meteor.callPromise('readFile', 'batman-shop-myshopify-com-launchpad-star/layout/theme.liquid').then((res) => {
-         console.log(res);
+      Meteor.callPromise('getHTML', 'http://batman-shop.myshopify.com').then(html => {
+         console.log(html);
+      }).catch((err) => {
+         console.log(err);
       });
 
    },

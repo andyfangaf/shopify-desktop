@@ -1,11 +1,13 @@
 Site = React.createClass({
    componentDidMount() {
-      $('.ui.segment.site').html('<button>buton</button>');
+      $('.appFrame').attr('contenteditable', 'true');
    },
    render() {
       return (
          <div className="ui left grid">
-            <div className={`ui segment site ${this.props.screenSize}`} contentEditable={this.props.editable}></div>
+            <div className={`ui segment site ${this.props.screenSize}`}>
+               <iframe src="http://batman-shop.myshopify.com/" className="appFrame"></iframe>
+            </div>
          </div>
       )
    }

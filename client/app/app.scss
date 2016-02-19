@@ -53,6 +53,9 @@ body {
     background-position: center -995px;
   }
 }
+.slideIn {
+  opacity: 0;
+}
 .login {
   background: #e5e9ec url("loginbg.png") repeat center 0;
   border-color: #d7dde1;
@@ -76,12 +79,12 @@ body {
         background: transparent;
       }
     }
-    .slideIn {
-      opacity: 0;
-    }
   }
   .ui.segment.container {
     max-width: 475px !important;
+  }
+  .ui.input.action {
+    margin-left: -120px;
   }
 }
 .ui.green.button,
@@ -110,6 +113,11 @@ body {
   }
   &.mobile {
     width: $mobile_size;
+  }
+  .appFrame {
+    width: 100%;
+    height: 80vh;
+    border: 0;
   }
 }
 .ui.sidebar {

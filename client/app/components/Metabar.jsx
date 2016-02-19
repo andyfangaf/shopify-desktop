@@ -30,7 +30,7 @@ Metabar = React.createClass({
                </div>
             </div>
             <div className="ui basic modal theme-import">
-               <ThemeSelection themes={Session.get('themes')}/>
+               <ThemeSelection/>
             </div>
             <a className="item right menu">
                <button className="large ui icon button help circular">
