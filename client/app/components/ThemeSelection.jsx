@@ -2,7 +2,7 @@ ThemeSelection = React.createClass({
    mixins: [ReactMeteorData],
    getMeteorData() {
       return {
-         themes: User.findOne({
+         user: User.findOne({
             loggedIn: true
          }, {
             themes: {
@@ -23,15 +23,11 @@ ThemeSelection = React.createClass({
       });
    },
    render() {
-      let themes = () => {
-         this.data.themes.map((theme) => {
-            console.log(theme.name);
-            console.log(this.data.themes);
-            return (
-               <div className="item" key={theme.id}>{theme.name}</div>
-            )
-         });
-      };
+      let themes = this.data.user.themes.map((theme) => {
+         return (
+            <div className="item" key={theme.id}>{theme.name}</div>
+         )
+      });
       return (
          <div>
             <h1>
