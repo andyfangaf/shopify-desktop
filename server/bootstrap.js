@@ -4,7 +4,8 @@ import fs from 'fs-extra';
 Meteor.startup(() => {
 	User.remove({});
 	User.insert({
-		loggedIn: true
+		loggedIn: true,
+		themes: []
 	});
 	Shopify.addKeyset('auth', {
 		api_key: Meteor.settings.shopify.key,
