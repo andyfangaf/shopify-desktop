@@ -2,7 +2,7 @@ import Liquid from 'liquid-node';
 import fs from 'fs-extra';
 
 Meteor.startup(() => {
-	User.remove();
+	User.remove({});
 	User.insert({
 		loggedIn: true
 	});

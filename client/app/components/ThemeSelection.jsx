@@ -2,7 +2,13 @@ ThemeSelection = React.createClass({
    mixins: [ReactMeteorData],
    getMeteorData() {
       return {
-         themes: User.find({loggedIn: true}).fetch()[0]
+         themes: User.find({
+            loggedIn: true
+         }, {
+            themes: {
+               $exists: true
+            }
+         }).fetch()
       }
    },
    setInitialState() {
@@ -15,7 +21,6 @@ ThemeSelection = React.createClass({
             component.setState({themeSelected: true});
          }
       });
-      console.log(`Mounted with the prop ${this.props.themes}`);
    },
    render() {
       return (

@@ -10,11 +10,11 @@ MainLayout = React.createClass({
          $('.pusher').width(pusherWidth);
       }, 50));
 
-      Meteor.callPromise('getHTML', 'http://batman-shop.myshopify.com').then(html => {
-         console.log(html);
-      }).catch((err) => {
-         console.log(err);
-      });
+      // Meteor.callPromise('getHTML', 'http://batman-shop.myshopify.com').then(html => {
+      //    console.log(html);
+      // }).catch((err) => {
+      //    console.log(err);
+      // });
 
    },
    switchMobile() {

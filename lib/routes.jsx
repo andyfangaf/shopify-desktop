@@ -1,17 +1,35 @@
 FlowRouter.route('/', {
    name: 'Home',
    action() {
-      if (!Session.get('keyset')) {
+      ReactLayout.render(MainLayout);
+      if (!User.find({
+         loggedIn: true,
+         keyset: {
+            $exists: true
+         }
+      }, {
+         keyset: {
+            $exists: true
+         }
+      }).count() > 0) {
          FlowRouter.go('/login');
       }
-      ReactLayout.render(MainLayout);
    }
 });
 FlowRouter.route('/login', {
    name: 'Login',
    action() {
       ReactLayout.render(LoginLayout);
-      if (Session.get('keyset')) {
+      if (User.find({
+         loggedIn: true,
+         keyset: {
+            $exists: true
+         }
+      }, {
+         keyset: {
+            $exists: true
+         }
+      }).count() > 0) {
          FlowRouter.go('/');
       }
    }
