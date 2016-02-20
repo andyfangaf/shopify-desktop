@@ -2,13 +2,13 @@ ThemeSelection = React.createClass({
    mixins: [ReactMeteorData],
    getMeteorData() {
       return {
-         themes: User.find({
+         themes: User.findOne({
             loggedIn: true
          }, {
             themes: {
                $exists: true
             }
-         }).fetch()
+         })
       }
    },
    setInitialState() {
@@ -23,6 +23,15 @@ ThemeSelection = React.createClass({
       });
    },
    render() {
+      let themes = () => {
+         this.data.themes.map((theme) => {
+            console.log(theme.name);
+            console.log(this.data.themes);
+            return (
+               <div className="item" key={theme.id}>{theme.name}</div>
+            )
+         });
+      };
       return (
          <div>
             <h1>
@@ -32,12 +41,7 @@ ThemeSelection = React.createClass({
                <i className="dropdown icon"></i>
                <div className="default text">Select a theme</div>
                <div className="menu">
-                  {this.data.themes.map((theme, i) => {
-                     console.log(theme.name, i);
-                     return (
-                        <div className="item" key={i}>{theme.name}</div>
-                     )
-                  })}
+                  {themes}
                </div>
             </div>
          </div>
