@@ -16,14 +16,20 @@ ThemeSelection = React.createClass({
    },
    componentDidMount() {
       var component = this;
+      console.log('mounted');
       $('.ui.dropdown').dropdown({
          action(selected) { // when the theme is selected
             component.setState({themeSelected: true});
          }
       });
+      console.log('dropped down');
+   },
+   componentDidUpdate() {
+      $('.ui.dropdown').dropdown('refresh');
    },
    render() {
       let themes = this.data.user.themes.map((theme) => {
+         console.log(`Logging ${theme}`);
          return (
             <div className="item" key={theme.id}>{theme.name}</div>
          )

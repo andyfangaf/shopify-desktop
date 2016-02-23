@@ -3,6 +3,8 @@ MainLayout = React.createClass({
       return {screenSize: 'desktop', published: false, editable: false}
    },
    componentDidMount() {
+      window.mainlayout = this; // debugging
+      this.widgetIn();
       let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
       $('.pusher').width(pusherWidth);
       $(window).on('resize', _.debounce(() => {
@@ -10,12 +12,11 @@ MainLayout = React.createClass({
          $('.pusher').width(pusherWidth);
       }, 50));
 
-      // Meteor.callPromise('getHTML', 'http://batman-shop.myshopify.com').then(html => {
-      //    console.log(html);
-      // }).catch((err) => {
-      //    console.log(err);
-      // });
-
+      Meteor.callPromise('getHTML', 'http://mashable.com').then(html => {
+         console.log(html);
+      }).catch((err) => {
+         console.log(err);
+      });
    },
    switchMobile() {
       this.setState({screenSize: 'mobile'})
@@ -33,6 +34,12 @@ MainLayout = React.createClass({
          });
       }
    },
+   widgetIn() {
+      $('.content').velocity('transition.slideLeftBigIn', {
+         duration: 300,
+         opacity: 1
+      });
+   },
    render() {
       window.addEventListener('keydown', this.switchModes);
       return (
@@ -42,7 +49,7 @@ MainLayout = React.createClass({
                   <h1>
                      <i className="ui icon shop"></i>Add a product</h1>
                </div>
-               <div className="content">
+               <div className="content" ref="sidebar">
                   <div className="ui inverted form">
                      <div className="field">
                         <label>Product Name</label>

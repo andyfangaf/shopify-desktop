@@ -26,7 +26,6 @@ react
 flemay:less-autoprefixer
 mquandalle:bower
 froatsnook:shopify
-arboleya:electrify
 percolate:velocityjs
 meteorhacks:npm
 
@@ -38,3 +37,4 @@ ostrio:meteor-root
 deanius:promise
 http
 reactive-var
+arboleya:electrify

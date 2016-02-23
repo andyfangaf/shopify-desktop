@@ -103,8 +103,9 @@ body {
   }
 }
 .ui.segment.site {
-  margin: 3em;
+  box-shadow: 0 0 25px rgba(0,0,0,.11), 0 0 0 1px rgba(0,0,0,.03);
   -webkit-transition-duration: 0.5s;
+  padding: 0;
   &.desktop {
     width: $desktop_size;
   }
@@ -126,6 +127,9 @@ body {
   background: #272c30;
   .header {
     padding: 2em 0;
+  }
+  .content {
+    opacity: 0.5;
   }
   .footer {
     position: absolute;

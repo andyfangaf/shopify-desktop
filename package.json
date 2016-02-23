@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "electrify": "^2.1.4",
     "fs-extra": "^0.26.5",
     "future": "^2.3.1"
   },

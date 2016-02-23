@@ -1,3 +1,5 @@
+$('img').onDragStart = "return false";
+
 LoginLayout = React.createClass({
    getInitialState() {
       return {loggedIn: false, themes: {}}
@@ -25,7 +27,7 @@ LoginLayout = React.createClass({
                });
                FlowRouter.go('/');
                $('.ui.modal.theme-import').modal('setting', {
-                  closable: false,
+                  // closable: false,
                   transition: 'fade up'
                }).modal('show');
             }
