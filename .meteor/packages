@@ -27,7 +27,6 @@ flemay:less-autoprefixer
 mquandalle:bower
 froatsnook:shopify
 percolate:velocityjs
-meteorhacks:npm
 
 
 npm-container
@@ -38,3 +37,5 @@ deanius:promise
 http
 reactive-var
 arboleya:electrify
+cosmos:browserify
+praneybehl:react-select

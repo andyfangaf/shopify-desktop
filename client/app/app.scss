@@ -12,6 +12,7 @@ $desktop_size: 100%;
 $tablet_size: 70%;
 $mobile_size: 50%;
 body {
+  overflow: hidden;
   background: #ebeef0;
   -webkit-transition-duration: 1s;
 }
@@ -106,6 +107,8 @@ body {
   box-shadow: 0 0 25px rgba(0,0,0,.11), 0 0 0 1px rgba(0,0,0,.03);
   -webkit-transition-duration: 0.5s;
   padding: 0;
+  max-width: 90%;
+  margin-top: 2em;
   &.desktop {
     width: $desktop_size;
   }
@@ -147,4 +150,28 @@ body {
 .ui.text.menu .header.item {
   // edit/ preview header should not change layout of actionbar
   width: 135px;
+}
+.ui.text.menu.resize-bar {
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  font-size: 0.8em;
+  &:hover {
+    background: #fff;
+  }
+  .item {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 100%;
+    &:hover {
+      cursor: pointer;
+      background: #ddd;
+    }
+  }
 }

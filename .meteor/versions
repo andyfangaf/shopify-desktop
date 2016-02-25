@@ -49,9 +49,7 @@ meteor@1.1.11-modules.8
 meteor-base@1.0.1
 meteor-env-dev@0.0.1-modules.8
 meteor-env-prod@0.0.1-modules.8
-meteorhacks:async@1.0.0
 meteorhacks:flow-layout@1.4.2
-meteorhacks:npm@1.5.0
 minifiers-css@1.1.8-modules.8
 minifiers-js@1.1.8-modules.8
 minimongo@1.0.11-modules.8
@@ -68,6 +66,7 @@ observe-sequence@1.0.8-modules.8
 ordered-dict@1.0.4
 ostrio:meteor-root@1.0.2
 percolate:velocityjs@1.2.1_1
+praneybehl:react-select@0.6.11_1
 promise@0.5.2-modules.8
 random@1.0.6-modules.8
 react@0.14.3
