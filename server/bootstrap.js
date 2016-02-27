@@ -5,7 +5,8 @@ Meteor.startup(() => {
   User.remove({});
   User.insert({
     loggedIn: true,
-    themes: []
+    themes: [],
+    html: ''
   });
   Shopify.addKeyset('auth', {
     api_key: Meteor.settings.shopify.key,

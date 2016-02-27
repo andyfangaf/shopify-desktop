@@ -77,18 +77,33 @@ Meteor.methods({
         }).goto(url)
         .wait()
         .click('a[href="#LoginModal"]')
-        .wait(100) // wait for modal
+        .visible('#login_form')
         .insert('#Password', 'stohra')
         .click('#login_form [name="commit"]')
         .wait()
+        .visible('#PageContainer')
+        .wait(1000)
         .evaluate(() => {
-          console.log(document.documentElement);
+          console.log(document.getElementsByTagName('html')[0].outerHTML);
           return document.getElementsByTagName('html')[0].outerHTML;
         })
+        .end()
         .then((html) => {
           console.log(html);
-          resolve(html)
+          let $ = cheerio.load(html);
+          let processed = $.prepend('head', `<base href="${url}">`);
+          resolve(processed)
         });
+    });
+  },
+  updateCurrentPage(html) {
+    return new Promise((resolve, reject) => {
+      User.update({
+        loggedIn: true
+      }, {
+        html: html
+      });
+      resolve(html);
     });
   }
 });

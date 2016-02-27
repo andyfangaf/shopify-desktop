@@ -3,16 +3,7 @@ FlowRouter.route('/', {
   action() {
     FlowRouter.go('/');
     ReactLayout.render(MainLayout);
-    if (!User.find({
-      loggedIn: true,
-      keyset: {
-        $exists: true
-      }
-    }, {
-      keyset: {
-        $exists: true
-      }
-    }).count() > 0) {
+    if (!User.findOne().loggedIn) {
       FlowRouter.go('/login');
       console.log(`Logged in`);
     }
@@ -24,18 +15,20 @@ FlowRouter.route('/login', {
   action() {
     FlowRouter.go('/login');
     ReactLayout.render(LoginLayout);
-    if (User.find({
-      loggedIn: true,
-      keyset: {
-        $exists: true
-      }
-    }, {
-      keyset: {
-        $exists: true
-      }
-    }).count() > 0) {
+    if (User.findOne().loggedIn) {
       FlowRouter.go('/');
     }
     console.log(`Logged in`);
+  }
+});
+
+FlowRouter.route('/theme', {
+  name: 'Theme',
+  action() {
+    Meteor.callPromise('proxyShopify', 'https://batcave-shop.myshopify.com/').then(res => {
+      console.log(res);
+      Meteor.callPromise('updateCurrentPage', res);
+    });
+    ReactLayout.render(Theme);
   }
 });
