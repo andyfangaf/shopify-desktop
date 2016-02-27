@@ -1,4 +1,5 @@
 MainLayout = React.createClass({
+
   getInitialState() {
     return {screenSize: 'desktop', published: false, editable: false}
   },

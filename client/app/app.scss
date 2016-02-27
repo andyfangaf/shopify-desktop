@@ -32,8 +32,16 @@ body {
     }
   }
 }
-.metabar {
+.ui.text.menu.metabar {
   padding-right: 50px;
+  height: 15px;
+  .ui.text.menu.resize-bar {
+    min-height: 15px;
+    height: 15px;
+    .item {
+      height: 15px;
+    }
+  }
 }
 .ui.text.menu {
   margin: 0;

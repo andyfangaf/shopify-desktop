@@ -1,9 +1,16 @@
 Theme = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
-    return {contents: User.findOne().html}
+    return {
+      contents: User.findOne({
+        html: {
+          $exists: true
+        }
+      }).html
+    }
   },
   componentDidMount() {
+    document.designMode = "on";
     $('.ui.dimmer').dimmer({closable: false}).dimmer('show');
   },
   componentDidUpdate() {
@@ -18,10 +25,8 @@ Theme = React.createClass({
           height: '100vh'
         }}>
           <div className="ui inverted dimmer">
-            <div className="ui text loader">Loading</div>
+            <div className="ui text loader">Loading from Shopify</div>
           </div>
-          <p></p>
-          <p></p>
         </div>
       </div>
     )

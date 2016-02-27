@@ -84,15 +84,12 @@ Meteor.methods({
         .visible('#PageContainer')
         .wait(1000)
         .evaluate(() => {
-          console.log(document.getElementsByTagName('html')[0].outerHTML);
           return document.getElementsByTagName('html')[0].outerHTML;
         })
         .end()
         .then((html) => {
           console.log(html);
-          let $ = cheerio.load(html);
-          let processed = $.prepend('head', `<base href="${url}">`);
-          resolve(processed)
+          resolve(html)
         });
     });
   },
@@ -101,9 +98,27 @@ Meteor.methods({
       User.update({
         loggedIn: true
       }, {
-        html: html
+        $set: {
+          html: ''
+        }
+      });
+      User.update({
+        loggedIn: true
+      }, {
+        $set: {
+          html: html
+        }
       });
       resolve(html);
+    });
+  },
+  changeScreenSize(size) {
+    User.update({
+      loggedIn: true
+    }, {
+      $set: {
+        screenSize: size
+      }
     });
   }
 });

@@ -19,8 +19,8 @@ Metabar = React.createClass({
     });
   },
   changeScreenSize(e) {
-    console.log(e);
     this.setState({screenSize: e.target.innerText});
+    Meteor.call('changeScreenSize', this.state.screenSize);
     console.log(`Changed state to ${this.state.screenSize}`);
   },
   displayScreenSize(e) {
@@ -40,7 +40,7 @@ Metabar = React.createClass({
       let sizeClass = `item size-${size}`;
       let sizeText = `${size}px`;
       return (
-        <div className={sizeClass} style={sizeCss} key={i} data-screensize={size} onClick={this.changeScreenSize} onMouseOver={this.displayScreenSize} onMouseLeave={this.hideScreenSize}></div>
+        <div className={sizeClass} style={sizeCss} key={i} data-screensize={size} onClick={this.changeScreenSize} onMouseOver={this.displayScreenSize} onMouseLeave={this.hideScreenSize}>Change screen size</div>
       )
     });
     return (
