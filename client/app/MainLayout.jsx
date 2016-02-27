@@ -12,11 +12,6 @@ MainLayout = React.createClass({
       $('.pusher').width(pusherWidth);
     }, 50));
 
-    Meteor.callPromise('getHTML', 'http://mashable.com').then(html => {
-      console.log(html);
-    }).catch((err) => {
-      console.error(err);
-    });
   },
   switchMobile() {
     this.setState({screenSize: 'mobile'})

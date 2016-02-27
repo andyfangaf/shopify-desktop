@@ -1,6 +1,11 @@
 import fs from 'fs-extra';
 import Liquid from 'liquid-node';
-var notifier = Meteor.require('node-notifier');
+const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor
+// const webdriverio = Meteor.npmRequire('webdriverio');
+// const casper = Meteor.npmRequire('casper');
+const Nightmare = Meteor.npmRequire('nightmare');
+const cheerio = Meteor.npmRequire('cheerio');
+const notifier = Meteor.npmRequire('node-notifier');
 
 keysetNames = {};
 Shopify.onAuth((accessToken, config) => {
@@ -45,7 +50,6 @@ Meteor.methods({
       let variablesPath = `${Meteor.absolutePath}/public/themes/batman-shop-myshopify-com-launchpad-star/config/settings_data.json`;
       fs.readFile(variablesPath, 'utf8', (err, data) => {
         if (err) reject(err);
-
         let variables = JSON.parse(data);
         let engine = new Liquid.Engine;
         let parsedFile = engine.parseAndRender(fileContents, variables).then((res) => {
@@ -64,8 +68,27 @@ Meteor.methods({
         themes: themes
       }
     });
-    themes.map((theme) => {
-      console.log(`Added theme ${theme} to Mongo`);
+  },
+  proxyShopify(url) {
+    return new Promise((resolve, reject) => {
+      console.log('Proxying shopify...');
+      const nightmare = new Nightmare({
+          show: false
+        }).goto(url)
+        .wait()
+        .click('a[href="#LoginModal"]')
+        .wait(100) // wait for modal
+        .insert('#Password', 'stohra')
+        .click('#login_form [name="commit"]')
+        .wait()
+        .evaluate(() => {
+          console.log(document.documentElement);
+          return document.getElementsByTagName('html')[0].outerHTML;
+        })
+        .then((html) => {
+          console.log(html);
+          resolve(html)
+        });
     });
   }
 });

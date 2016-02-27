@@ -1,13 +1,15 @@
 Site = React.createClass({
   componentDidMount() {
-    $('.appFrame body').attr('contenteditable', 'true');
-    console.log('done');
+    Meteor.callPromise('proxyShopify', 'https://batcave-shop.myshopify.com/').then(res => {
+      $('.appFrame').html(res);
+    });
+
   },
   render() {
     return (
       <div className="ui centered grid container">
         <div className={`ui segment site ${this.props.screenSize}`}>
-          <iframe src="https://batcave-shop.myshopify.com/" className="appFrame"></iframe>
+          <div className="appFrame"></div>
         </div>
       </div>
     )

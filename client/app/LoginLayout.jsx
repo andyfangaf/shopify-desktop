@@ -1,4 +1,6 @@
-$('img').onDragStart = "return false";
+window.ondragstart = function() {
+  return false;
+}
 
 LoginLayout = React.createClass({
   getInitialState() {

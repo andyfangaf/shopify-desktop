@@ -1,7 +1,7 @@
 /*==============================
 =            COLORS            =
 ==============================*/
-$bg-color: #31373d;
+$bg-color: rgba(33,37,41,0.95);
 $color: #96a7b6;
 $primary: #70A821;
 $tolerance: 10; // $tolerance/100
@@ -124,10 +124,10 @@ body {
     border: 0;
   }
 }
-.ui.sidebar {
+.ui.sidebar.inverted.vertical.menu {
   padding: 1em 2em;
   color: #96a7b6;
-  background: #272c30;
+  background: #31373d;
   .header {
     padding: 2em 0;
   }
