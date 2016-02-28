@@ -5,6 +5,7 @@ A concept intended to make theme editing intuitive and productive without sacrif
 - [x] Edit/ preview mode
 - [x] Edit source of current page
 - [x] Usable on trial and premium accounts
+
 ### Disabled
 - [ ] Publish modifications
 - [ ] Edit unpublished themes
