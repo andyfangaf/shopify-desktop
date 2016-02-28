@@ -1,10 +1,16 @@
 MainLayout = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      editable: User.findOne({loggedIn: true}).editable
+    }
+  },
 
   getInitialState() {
     return {screenSize: 'desktop', published: false, editable: false}
   },
   componentDidMount() {
-    window.mainlayout = this; // debugging
+    window.addEventListener('keydown', this.switchModes);
     this.widgetIn();
     let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
     $('.pusher').width(pusherWidth);
@@ -22,9 +28,7 @@ MainLayout = React.createClass({
   },
   switchModes(e) {
     if (e.keyCode == '18') {
-      this.setState({
-        editable: !this.state.editable
-      });
+      Meteor.call('toggleEditable');
     }
   },
   widgetIn() {
@@ -34,7 +38,6 @@ MainLayout = React.createClass({
     });
   },
   render() {
-    window.addEventListener('keydown', this.switchModes);
     return (
       <div className="main">
         <div className="ui sidebar inverted vertical menu fixed right wide visible">
@@ -71,18 +74,18 @@ MainLayout = React.createClass({
         </div>
         <div className="pusher">
           <Metabar/>
-          <Site screenSize={this.state.screenSize} editable={this.state.editable}/>
+          <Site screenSize={this.state.screenSize} editable={this.data.editable}/>
           <div className="actionbar">
             <div className="ui container">
               <div className="ui text menu">
-                <div className="header item" style={this.state.editable
+                <div className="header item" style={this.data.editable
                   ? {
                     color: '#fff'
                   }
                   : null}>
-                  <i className={this.state.editable
+                  <i className={this.data.editable
                     ? 'ui icon edit'
-                    : 'ui icon idea'}></i>{this.state.editable
+                    : 'ui icon idea'}></i>{this.data.editable
                     ? 'EDIT MODE'
                     : 'PREVIEW MODE'}</div>
                 <a className={this.state.screenSize == 'desktop'

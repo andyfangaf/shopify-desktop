@@ -95,14 +95,6 @@ Meteor.methods({
             head: $head.toString(),
             body: $body.toString()
           }
-          console.log($head, $body);
-          User.update({ // hot push reload dev purposes
-            loggedIn: true
-          }, {
-            $set: {
-              html: ''
-            }
-          });
           User.update({
             loggedIn: true
           }, {
@@ -110,6 +102,7 @@ Meteor.methods({
               html: res
             }
           });
+          console.log(`Resolved ${url} to the client`);
           resolve(res);
         });
     });
@@ -120,6 +113,16 @@ Meteor.methods({
     }, {
       $set: {
         screenSize: size
+      }
+    });
+  },
+  toggleEditable() {
+    let isEditable = User.findOne().editable;
+    User.update({
+      loggedIn: true
+    }, {
+      $set: {
+        editable: !isEditable
       }
     });
   }

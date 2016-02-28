@@ -7,7 +7,8 @@ Meteor.startup(() => {
     loggedIn: true,
     themes: [],
     html: '',
-    screenSize: ''
+    editable: false,
+    screenSize: 'desktop'
   });
   Shopify.addKeyset('auth', {
     api_key: Meteor.settings.shopify.key,

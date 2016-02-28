@@ -9,11 +9,27 @@ Theme = React.createClass({
       }).html
     }
   },
+  getInitialState() {
+    return {editable: false, loading: true}
+  },
+  switchModes(e) {
+    if (e.keyCode == '18') {
+      this.setState({
+        editable: !this.state.editable
+      });
+      this.state.editable
+        ? document.body.contentEditable = 'true'
+        : document.body.contentEditable = 'false';
+    }
+  },
   componentDidMount() {
+    window.addEventListener('keydown', this.switchModes);
     $('.ui.dimmer').dimmer({closable: false}).dimmer('show');
   },
-  componentDidUpdate() {
-    document.designMode = "on";
+  showLoading() {
+    console.log('Loading new page..');
+  },
+  componentDidUpdate(e) {
     console.log(this.data.contents);
     let $html = $.parseHTML(this.data.contents);
     $('body').html(this.data.contents.body);
@@ -21,18 +37,22 @@ Theme = React.createClass({
 
     $('a[href]').on('click', (e) => { // if a url is clicked, proxy the route
       e.preventDefault();
+      this.showLoading();
+      this.setState({loading: true});
       let route = e.currentTarget.getAttribute('href')
-      console.log(` https : //batcave-shop.myshopify.com${route}`);
+      console.log(`Proxying ${route}...`);
 
       Meteor.callPromise('proxyShopify', `https://batcave-shop.myshopify.com${route}`).then(res => {
-        console.log('updated', res);
-      })
-
+        this.setState({loading: false});
+      });
     });
+
   },
   render() {
-    return (
-      <div className="appFrame" spellCheck="false">
+
+    let loading;
+    if (this.state.loading) {
+      loading = (
         <div className="ui segment" style={{
           height: '100vh'
         }}>
@@ -40,6 +60,11 @@ Theme = React.createClass({
             <div className="ui text loader">Loading from Shopify</div>
           </div>
         </div>
+      )
+    }
+    return (
+      <div className="appFrame" spellCheck="false">
+        {loading}
       </div>
     )
   }
