@@ -89,11 +89,11 @@ Meteor.methods({
         .end()
         .then((html) => {
           let $ = cheerio.load(html);
-          let $head = $('head');
-          let $body = $('body');
+          let head = $('head').toString();
+          let body = $('body').toString();
           let res = {
-            head: $head.toString(),
-            body: $body.toString()
+            head,
+            body
           }
           User.update({
             loggedIn: true
@@ -125,5 +125,6 @@ Meteor.methods({
         editable: !isEditable
       }
     });
+    return !isEditable;
   }
 });

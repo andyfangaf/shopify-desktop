@@ -3,25 +3,19 @@ window.ondragstart = function() {
 }
 
 LoginLayout = React.createClass({
-  getInitialState() {
-    return {loggedIn: false, themes: {}}
-  },
   authenticate(e) {
     e.preventDefault();
     $('.submit.button').addClass('disabled');
-    this.setState({loggedIn: true});
     let component = this;
     let storeName = ReactDOM.findDOMNode(this.refs.storeName).value.trim();
     Meteor.call('addKeyset', storeName, (err, keysetName) => {
       let authenticator = new Shopify.PublicAppOAuthAuthenticator({
         shop: storeName, api_key: '53ea809b4180e0b1db2706a6fe5ffedb', keyset: 'auth', scopes: 'all', // request all permissions
         onAuth(accessToken) {
-
-          let auth = User.find({loggedIn: true}).fetch()[0];
-          const storeName = auth.storeName;
-          const keysetName = auth.keyset;
+          const shop = auth.storeName;
+          const keyset = auth.keyset;
           console.log(`${storeName} keyset is ${keysetName}`);
-          const api = new Shopify.API({shop: storeName, keyset: keysetName});
+          const api = new Shopify.API({shop, keyset});
           api.getThemes((err, res) => {
             err
               ? console.log(err)

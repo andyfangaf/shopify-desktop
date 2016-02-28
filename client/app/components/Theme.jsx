@@ -1,25 +1,19 @@
 Theme = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
-    return {
-      contents: User.findOne({
-        html: {
-          $exists: true
-        }
-      }).html
-    }
+    return {contents: User.findOne().html, editable: User.findOne().editable}
   },
   getInitialState() {
     return {editable: false, loading: true}
   },
   switchModes(e) {
     if (e.keyCode == '18') {
-      this.setState({
-        editable: !this.state.editable
+      Meteor.call('toggleEditable', (err, res) => {
+        res
+          ? document.body.contentEditable = true
+          : document.body.contentEditable = false;
+        console.log(`Editable set to ${res}`);
       });
-      this.state.editable
-        ? document.body.contentEditable = 'true'
-        : document.body.contentEditable = 'false';
     }
   },
   componentDidMount() {
@@ -29,27 +23,23 @@ Theme = React.createClass({
   showLoading() {
     console.log('Loading new page..');
   },
-  componentDidUpdate(e) {
-    console.log(this.data.contents);
-    let $html = $.parseHTML(this.data.contents);
-    $('body').html(this.data.contents.body);
-    $('head').html(this.data.contents.head);
-
+  render() {
     $('a[href]').on('click', (e) => { // if a url is clicked, proxy the route
       e.preventDefault();
-      this.showLoading();
-      this.setState({loading: true});
-      let route = e.currentTarget.getAttribute('href')
-      console.log(`Proxying ${route}...`);
+      console.log(this.data.editable);
+      if (this.data.editable == false) {
+        this.showLoading();
+        this.setState({loading: true});
+        let route = e.currentTarget.getAttribute('href')
+        console.log(`Proxying ${route}...`);
 
-      Meteor.callPromise('proxyShopify', `https://batcave-shop.myshopify.com${route}`).then(res => {
-        this.setState({loading: false});
-      });
+        Meteor.callPromise('proxyShopify', `https://batcave-shop.myshopify.com${route}`).then(html => {
+          this.setState({loading: false});
+          $('head').html(html.head); // load all scripts and styles before rendering the body
+          $('body').html(html.body);
+        });
+      }
     });
-
-  },
-  render() {
-
     let loading;
     if (this.state.loading) {
       loading = (

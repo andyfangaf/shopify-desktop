@@ -12,6 +12,8 @@ $desktop_size: 100%;
 $tablet_size: 70%;
 $mobile_size: 50%;
 body {
+  // default desktop styles
+  cursor: default;
   overflow: hidden;
   background: #ebeef0;
   -webkit-transition-duration: 1s;
@@ -112,11 +114,11 @@ body {
   }
 }
 .ui.segment.site {
-  box-shadow: 0 0 25px rgba(0,0,0,.11), 0 0 0 1px rgba(0,0,0,.03);
   -webkit-transition-duration: 0.5s;
   padding: 0;
   max-width: 90%;
   margin-top: 2em;
+  box-shadow: 0 0 25px rgba(0,0,0,.11), 0 0 0 1px rgba(0,0,0,.03);
   &.desktop {
     width: $desktop_size;
   }

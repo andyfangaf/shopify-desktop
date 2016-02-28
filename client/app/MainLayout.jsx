@@ -10,7 +10,6 @@ MainLayout = React.createClass({
     return {screenSize: 'desktop', published: false, editable: false}
   },
   componentDidMount() {
-    window.addEventListener('keydown', this.switchModes);
     this.widgetIn();
     let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
     $('.pusher').width(pusherWidth);
@@ -25,11 +24,6 @@ MainLayout = React.createClass({
   },
   switchDesktop() {
     this.setState({screenSize: 'desktop'})
-  },
-  switchModes(e) {
-    if (e.keyCode == '18') {
-      Meteor.call('toggleEditable');
-    }
   },
   widgetIn() {
     $('.content').velocity('transition.slideLeftBigIn', {
