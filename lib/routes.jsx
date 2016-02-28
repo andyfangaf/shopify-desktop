@@ -26,7 +26,7 @@ FlowRouter.route('/theme', {
   name: 'Theme',
   action() {
     Meteor.callPromise('proxyShopify', 'https://batcave-shop.myshopify.com/').then(res => {
-      Meteor.callPromise('updateCurrentPage', res);
+      console.log(res);
     });
     ReactLayout.render(Theme);
   }

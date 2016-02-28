@@ -98,10 +98,16 @@ MainLayout = React.createClass({
                 </a>
                 <div className="right menu">
                   <a className="item">
+                    <button className="ui icon basic inverted button">
+                      <i className="code icon"></i>
+                    </button>
+                  </a>
+                  <a className="item">
                     <span className={this.state.published
                       ? 'ui primary button'
                       : 'ui primary button disabled'}>Publish to Shopify</span>
                   </a>
+
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ babel-compiler@6.4.0-modules.8
 babel-runtime@0.1.5-modules.8
 base64@1.0.5-modules.8
 binary-heap@1.0.5-modules.8
+bkruse:pace@0.5.1
 blaze@2.1.4-modules.8
 blaze-tools@1.0.5-modules.8
 boilerplate-generator@1.0.5-modules.8

@@ -78,8 +78,8 @@ Meteor.methods({
         .wait()
         .click('a[href="#LoginModal"]')
         .visible('#login_form')
-        .insert('#Password', 'stohra')
-        .click('#login_form [name="commit"]')
+        .insert('#password', 'stohra')
+        .click('#login_form input[type="submit"]')
         .wait()
         .visible('#PageContainer')
         .wait(1000)
@@ -88,28 +88,30 @@ Meteor.methods({
         })
         .end()
         .then((html) => {
-          console.log(html);
-          resolve(html)
+          let $ = cheerio.load(html);
+          let $head = $('head');
+          let $body = $('body');
+          let res = {
+            head: $head.toString(),
+            body: $body.toString()
+          }
+          console.log($head, $body);
+          User.update({ // hot push reload dev purposes
+            loggedIn: true
+          }, {
+            $set: {
+              html: ''
+            }
+          });
+          User.update({
+            loggedIn: true
+          }, {
+            $set: {
+              html: res
+            }
+          });
+          resolve(res);
         });
-    });
-  },
-  updateCurrentPage(html) {
-    return new Promise((resolve, reject) => {
-      User.update({
-        loggedIn: true
-      }, {
-        $set: {
-          html: ''
-        }
-      });
-      User.update({
-        loggedIn: true
-      }, {
-        $set: {
-          html: html
-        }
-      });
-      resolve(html);
     });
   },
   changeScreenSize(size) {
