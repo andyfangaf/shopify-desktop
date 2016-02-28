@@ -1,5 +1,5 @@
 # Shopify Desktop
-It aims to simplify the theme editing experience while offering enough utility to be a productive tool. [You can read the making of Shopify Desktop on Medium.]()
+A concept intended to make theme editing intuitive and productive without sacrificing utility. [You can read the making of Shopify Desktop on Medium.]()
 
 ## Features
 - [x] Edit/ preview mode
