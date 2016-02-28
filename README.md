@@ -13,6 +13,7 @@ It aims to simplify the theme editing experience while offering enough utility t
 
 ## Development
 Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https://github.com/electron-userland/electron-prebuilt) installed globally. You'll also need a [Shopify Partner](https://www.shopify.ca/partners) account to access the API.
+
 1. `npm install`
 2. Edit `dev.settings.json` in the project's root directory with a your Shopify app key and secret
 3. Build the Meteor app `electrify --settings dev.settings.json`
