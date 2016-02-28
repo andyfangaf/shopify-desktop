@@ -5,8 +5,11 @@ A concept intended to make theme editing intuitive and productive without sacrif
 - [x] Edit/ preview mode
 - [x] Edit source of current page
 - [x] Usable on trial and premium accounts
+### Disabled
 - [ ] Publish modifications
 - [ ] Edit unpublished themes
+- [ ] Live preview changes made from text editor into preview pane
+- [ ] Dynamic sidebar widgets based on Liquid settings
 
 ## Downloads
 [Download the binary for OSx]()
