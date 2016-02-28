@@ -1,3 +1,5 @@
+// We're using insecure to make development faster. Security's not a concern since in production it's packaged in Electron (without easy access dev tools) and the user only has access to data he owns.
+
 MainLayout = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
@@ -22,8 +24,11 @@ MainLayout = React.createClass({
     // Hardcoded sidebar interation
     $('iframe').load(function() {
       $(this).contents().find('body').on('click', function(e) {
-        console.log(e);
-        component.widgetIn();
+        console.log(component.state);
+        if (component.data.editable == true) {
+          component.widgetIn();
+        }
+        component.setState({published: false});
       });
     });
 
@@ -33,6 +38,11 @@ MainLayout = React.createClass({
   },
   switchDesktop() {
     this.setState({screenSize: 'desktop'})
+  },
+  publishToShopify() {
+    Electrify.call('notify', `Published ${this.state.storeName}`, `Live on https://${this.state.storeName}.my-shopify.com`);
+    this.setState({published: true});
+
   },
   widgetIn() {
     $header = $('.ui.sidebar .header');
@@ -125,10 +135,10 @@ MainLayout = React.createClass({
                       <i className="code icon"></i>
                     </button>
                   </a>
-                  <a className="item">
+                  <a className="item" onClick={this.publishToShopify}>
                     <span className={this.state.published
-                      ? 'ui primary button'
-                      : 'ui primary button disabled'}>Publish to Shopify</span>
+                      ? 'ui primary button disabled publish'
+                      : 'ui primary button publish'}>Publish to Shopify</span>
                   </a>
                 </div>
               </div>

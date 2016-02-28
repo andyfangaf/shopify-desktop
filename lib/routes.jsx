@@ -2,7 +2,8 @@ FlowRouter.route('/', {
   name: 'Home',
   action() {
     FlowRouter.go('/');
-    if (!User.findOne().loggedIn) {
+    let loggedIn = User.findOne().loggedIn;
+    if (!loggedIn) {
       FlowRouter.go('/login');
       console.log(`Logged off`);
     } else {
@@ -13,9 +14,10 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
   name: 'Login',
   action() {
+    let loggedIn = User.findOne().loggedIn;
     FlowRouter.go('/login');
     ReactLayout.render(LoginLayout);
-    if (User.findOne().loggedIn) {
+    if (loggedIn) {
       FlowRouter.go('/');
     }
     console.log(`Logged in`);

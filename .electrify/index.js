@@ -10,10 +10,10 @@ app.on('ready', function() {
   electrify.start(function(meteor_root_url) {
     // creates a new electron window
     window = new browser({
-      width: 1200,
-      height: 900,
+      width: 1300,
+      height: 730,
       'node-integration': false, // node integration must to be off
-      'titleBarStyle': 'hidden-inset'
+      'titleBarStyle': 'hidden'
     });
 
     // open up meteor root url
@@ -59,17 +59,16 @@ app.on('will-quit', function terminate_and_quit(event) {
 //    started, use the Electrify.startup() convenience method for this
 //
 //
-// Electrify.startup(function(){
-//   Electrify.call(...);
-// });
+Electrify.startup(function() {
+  new Notification('Started up', '');
+});
 //
 // =============================================================================
 //
-// electrify.methods({
-//   'notify': function(name, description) {
-//     // do things... and call done(err, arg1, ..., argN)
-//
-//     done(null);
-//   }
-// });
+electrify.methods({
+  'notify': function(title, description, done) {
+    new Notification(title, description);
+    done(null)
+  }
+});
 //
