@@ -5,8 +5,8 @@ It aims to simplify the theme editing experience while offering enough utility t
 - [x] Edit/ preview mode
 - [x] Edit source of current page
 - [x] Usable on trial and premium accounts
-- [] Publish modifications
-- [] Edit unpublished themes
+- [ ] Publish modifications
+- [ ] Edit unpublished themes
 
 ## Downloads
 [Download the binary for OSx]()
