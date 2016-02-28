@@ -13,7 +13,7 @@ app.on('ready', function() {
       width: 1200,
       height: 900,
       'node-integration': false, // node integration must to be off
-      'titleBarStyle': 'hidden'
+      'titleBarStyle': 'hidden-inset'
     });
 
     // open up meteor root url

@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 Meteor.startup(() => {
   User.remove({});
   User.insert({
-    loggedIn: true,
+    loggedIn: false,
     themes: [],
     html: '',
     editable: false,

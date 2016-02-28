@@ -1,7 +1,10 @@
 Theme = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
-    return {contents: User.findOne().html, editable: User.findOne().editable}
+    return {
+      contents: User.findOne().html || null,
+      editable: User.findOne().editable || null
+    }
   },
   getInitialState() {
     return {editable: false, loading: true}
@@ -26,8 +29,8 @@ Theme = React.createClass({
   render() {
     $('a[href]').on('click', (e) => { // if a url is clicked, proxy the route
       e.preventDefault();
-      console.log(this.data.editable);
-      if (this.data.editable == false) {
+      console.log(this.props.editable);
+      if (this.props.editable == false) {
         this.showLoading();
         this.setState({loading: true});
         let route = e.currentTarget.getAttribute('href')

@@ -70,7 +70,6 @@ Metabar = React.createClass({
             </div>
           </div>
         </div>
-        <ThemeSelection/>
       </div>
     )
   }

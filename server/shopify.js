@@ -24,10 +24,9 @@ Meteor.methods({
       secret: Meteor.settings.shopify.secret
     });
 
-    User.update({
-      loggedIn: true
-    }, {
+    User.update({}, {
       $set: {
+        loggedIn: true,
         storeName: storeName,
         keyset: keysetName
       }
@@ -78,8 +77,8 @@ Meteor.methods({
         .wait()
         .click('a[href="#LoginModal"]')
         .visible('#login_form')
-        .insert('#password', 'stohra')
-        .click('#login_form input[type="submit"]')
+        .insert('input[type="password"]', 'stohra')
+        .click('#login_form [type="submit"]')
         .wait()
         .visible('#PageContainer')
         .wait(1000)

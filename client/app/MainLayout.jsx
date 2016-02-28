@@ -2,21 +2,30 @@ MainLayout = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      editable: User.findOne({loggedIn: true}).editable
+      editable: User.findOne().editable || false
     }
   },
-
   getInitialState() {
-    return {screenSize: 'desktop', published: false, editable: false}
+    return {screenSize: 'desktop', published: false, editable: false, storeName: User.findOne().storeName}
   },
   componentDidMount() {
-    this.widgetIn();
+    sweetAlert({title: 'Logged in', type: 'success'});
+
+    // Set size of sidebar and throttle resizing
     let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
     $('.pusher').width(pusherWidth);
     $(window).on('resize', _.debounce(() => {
       let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
       $('.pusher').width(pusherWidth);
     }, 50));
+    let component = this;
+    // Hardcoded sidebar interation
+    $('iframe').load(function() {
+      $(this).contents().find('body').on('click', function(e) {
+        console.log(e);
+        component.widgetIn();
+      });
+    });
 
   },
   switchMobile() {
@@ -26,40 +35,57 @@ MainLayout = React.createClass({
     this.setState({screenSize: 'desktop'})
   },
   widgetIn() {
+    $header = $('.ui.sidebar .header');
+    $content = $('.ui.sidebar .content');
+
+    $header.html(`<h1><i class="ui icon shop"></i>Add a product</h1>`);
+    $content.html(`<div class="ui inverted form">
+      <div class="field">
+        <label>Product Name</label>
+        <input type="text" placeholder="E.g. Batarang"/>
+      </div>
+      <div class="field">
+        <label>Price</label>
+        <input type="text" placeholder="E.g. $500"/>
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <div class="field">
+        <label>Upload an Image</label>
+        <img class="ui medium bordered image" src="//placehold.it/300x200"/>
+      </div>
+    </div>`)
+
     $('.content').velocity('transition.slideLeftBigIn', {
       duration: 300,
       opacity: 1
     });
   },
   render() {
+    let storeUrl = `https://${this.state.storeName}.myshopify.com/admin`;
     return (
       <div className="main">
         <div className="ui sidebar inverted vertical menu fixed right wide visible">
           <div className="header">
             <h1>
-              <i className="ui icon shop"></i>Add a product</h1>
+              <i className="ui icon home"></i>How to use</h1>
           </div>
           <div className="content" ref="sidebar">
-            <div className="ui inverted form">
-              <div className="field">
-                <label>Product Name</label>
-                <input type="text" placeholder="E.g. Batarang"/>
-              </div>
-              <div className="field">
-                <label>Price</label>
-                <input type="text" placeholder="E.g. $500"/>
-              </div>
-              <div className="field">
-                <label>Description</label>
-                <textarea rows="4"></textarea>
-              </div>
-            </div>
+            <ol>
+              <li>Navigate the site like a user would.</li>
+              <li>Once you've reached a page you wish to edit, press the option key to switch to edit mode.</li>
+              <li>You can now change text. Special actions will appear on the sidebar.</li>
+              <li>Once you've finished making changes, click the Publish button to make your store go live.</li>
+            </ol>
+
           </div>
           <div className="footer">
-            <a href="https://wayne-tech.myshopify.com/admin" target="_blank" data-content="Go to Shopify Admin" data-variation="inverted">
-              <img className="ui rounded image spaced floated left" src="//placehold.it/40x40"/>
+            <a href={storeUrl} target="_blank" data-content="Go to Shopify Admin" data-variation="inverted">
+              <img className="ui rounded image spaced floated left" src="http://cockahoop-digital.co.uk/wp-content/uploads/shopify-buttons-125x125-green.png" width="40" height="40"/>
               <div>
-                wayne-tech
+                {this.state.storeName}
                 <br></br>
                 <span>Andy Fang</span>
               </div>
@@ -104,7 +130,6 @@ MainLayout = React.createClass({
                       ? 'ui primary button'
                       : 'ui primary button disabled'}>Publish to Shopify</span>
                   </a>
-
                 </div>
               </div>
             </div>

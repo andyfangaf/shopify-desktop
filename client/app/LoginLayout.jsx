@@ -6,12 +6,12 @@ LoginLayout = React.createClass({
   authenticate(e) {
     e.preventDefault();
     $('.submit.button').addClass('disabled');
-    let component = this;
     let storeName = ReactDOM.findDOMNode(this.refs.storeName).value.trim();
     Meteor.call('addKeyset', storeName, (err, keysetName) => {
-      let authenticator = new Shopify.PublicAppOAuthAuthenticator({
+      const authenticator = new Shopify.PublicAppOAuthAuthenticator({
         shop: storeName, api_key: '53ea809b4180e0b1db2706a6fe5ffedb', keyset: 'auth', scopes: 'all', // request all permissions
         onAuth(accessToken) {
+          const auth = User.findOne();
           const shop = auth.storeName;
           const keyset = auth.keyset;
           console.log(`${storeName} keyset is ${keysetName}`);

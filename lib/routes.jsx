@@ -2,12 +2,12 @@ FlowRouter.route('/', {
   name: 'Home',
   action() {
     FlowRouter.go('/');
-    ReactLayout.render(MainLayout);
     if (!User.findOne().loggedIn) {
       FlowRouter.go('/login');
-      console.log(`Logged in`);
+      console.log(`Logged off`);
+    } else {
+      ReactLayout.render(MainLayout); // don't show login success modal on mount
     }
-
   }
 });
 FlowRouter.route('/login', {
