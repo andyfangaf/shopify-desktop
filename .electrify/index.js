@@ -59,9 +59,9 @@ app.on('will-quit', function terminate_and_quit(event) {
 //    started, use the Electrify.startup() convenience method for this
 //
 //
-Electrify.startup(function() {
-  new Notification('Started up', '');
-});
+// Electrify.startup(function() {
+//   new Notification('Started up', '');
+// });
 //
 // =============================================================================
 //
