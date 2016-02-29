@@ -1,9 +1,11 @@
+// TODO
+// Preview mode should close sidebar actions
 Theme = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
       contents: User.findOne().html || null,
-      editable: User.findOne().editable || null
+      editable: User.findOne().editable
     }
   },
   getInitialState() {
@@ -29,19 +31,18 @@ Theme = React.createClass({
   render() {
     $('a[href]').on('click', (e) => { // if a url is clicked, proxy the route
       e.preventDefault();
-      console.log(this.props.editable);
-      if (this.props.editable == false) {
-        this.showLoading();
-        this.setState({loading: true});
-        let route = e.currentTarget.getAttribute('href')
-        console.log(`Proxying ${route}...`);
-
-        Meteor.callPromise('proxyShopify', `https://batcave-shop.myshopify.com${route}`).then(html => {
-          this.setState({loading: false});
-          $('head').html(html.head); // load all scripts and styles before rendering the body
-          $('body').html(html.body);
-        });
-      }
+      let isEditable = User.findOne().editable; // can't use state/ props or it will reload page on contentToggle due to it being in componentDidUpdate cycle
+      // if (!isEditable) {
+      this.showLoading();
+      this.setState({loading: true});
+      let route = e.currentTarget.getAttribute('href')
+      console.log(`Proxying ${route}...`);
+      Meteor.callPromise('proxyShopify', `https://batcave-shop.myshopify.com${route}`).then(html => {
+        this.setState({loading: false});
+        $('head').html(html.head); // load all scripts and styles before rendering the body
+        $('body').html(html.body);
+      });
+      // }
     });
     let loading;
     if (this.state.loading) {
