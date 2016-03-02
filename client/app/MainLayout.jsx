@@ -40,7 +40,7 @@ MainLayout = React.createClass({
     this.setState({screenSize: 'desktop'})
   },
   publishToShopify() {
-    Electrify.call('notify', `Published ${this.state.storeName}`, `Live on https://${this.state.storeName}.my-shopify.com`);
+    // Electrify.call('notify', `Published ${this.state.storeName}`, `Live on https://${this.state.storeName}.my-shopify.com`);
     this.setState({published: true});
   },
   widgetIn() {

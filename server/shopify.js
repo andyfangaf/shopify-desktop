@@ -116,12 +116,12 @@ Meteor.methods({
     });
   },
   toggleEditable() {
-    console.log(`Edit mode changed to ${User.findOne().editable}`);
     User.update({}, {
       $set: {
         editable: !User.findOne().editable
       }
     });
-    return !User.findOne().editable;
+    console.log(`Edit mode changed to ${User.findOne().editable}`);
+    return User.findOne().editable;
   }
 });

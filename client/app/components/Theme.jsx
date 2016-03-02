@@ -4,7 +4,7 @@ Theme = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      contents: User.findOne().html || null,
+      contents: User.findOne().html || false,
       editable: User.findOne().editable
     }
   },

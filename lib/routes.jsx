@@ -1,8 +1,7 @@
 FlowRouter.route('/', {
   name: 'Home',
-  action(params) {
-    let loggedIn = User.findOne().loggedIn;
-    if (!loggedIn) {
+  action() {
+    if (User.findOne().loggedIn === undefined) {
       FlowRouter.go('/login');
       console.log(`Logged off`);
     } else {
@@ -14,10 +13,10 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
   name: 'Login',
   action() {
-    let loggedIn = User.findOne().loggedIn;
+    console.log(User.findOne().loggedIn);
     FlowRouter.go('/login');
     ReactLayout.render(LoginLayout);
-    if (loggedIn) {
+    if (User.findOne().loggedIn) {
       FlowRouter.go('/');
     }
     console.log(`Logged in`);
@@ -26,7 +25,7 @@ FlowRouter.route('/login', {
 
 FlowRouter.route('/theme', {
   name: 'Theme',
-  action(params) {
+  action() {
     Meteor.callPromise('proxyShopify', 'https://batcave-shop.myshopify.com/').then(html => {
       $('head').html(html.head); // load all scripts and styles before rendering the body
       $('body').html(html.body);
