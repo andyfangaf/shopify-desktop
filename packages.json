@@ -1,6 +1,9 @@
 {
-  "electrify": "^2.1.4",
-  "fs-extra": "^0.26.5",
-  "nightmare": "^2.2.0",
-  "phantom": "^2.0.4",
+  "electrify": "2.1.4",
+  "fs-extra": "0.26.5",
+  "nightmare": "2.2.0",
+  "phantom": "2.0.4",
+  "liquid-node": "2.6.1",
+  "cheerio": "0.20.0",
+  "node-notifier": "4.5.0"
 }
