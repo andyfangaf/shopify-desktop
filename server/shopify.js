@@ -1,23 +1,20 @@
 import fs from 'fs-extra';
 import Liquid from 'liquid-node';
 const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor
-// const webdriverio = Meteor.npmRequire('webdriverio');
-// const casper = Meteor.npmRequire('casper');
 const Nightmare = Meteor.npmRequire('nightmare');
 const cheerio = Meteor.npmRequire('cheerio');
 const notifier = Meteor.npmRequire('node-notifier');
 
 keysetNames = {};
 Shopify.onAuth((accessToken, config) => {
-  var keysetName = keysetNames[config.shop];
-  Shopify.addKeyset(keysetName, {
+  Shopify.addKeyset(keysetNames[config.shop], {
     access_token: accessToken,
   });
 });
 
 Meteor.methods({
   addKeyset(storeName) {
-    let keysetName = Random.id(17);
+    const keysetName = Random.id(17);
     keysetNames[storeName] = keysetName;
     Shopify.addKeyset(keysetName, {
       api_key: Meteor.settings.shopify.key,
@@ -82,9 +79,7 @@ Meteor.methods({
         .wait()
         .visible('#PageContainer')
         .wait(1000)
-        .evaluate(() => {
-          return document.getElementsByTagName('html')[0].outerHTML;
-        })
+        .evaluate(() => document.getElementsByTagName('html')[0].outerHTML)
         .end()
         .then((html) => {
           let $ = cheerio.load(html);
@@ -121,7 +116,7 @@ Meteor.methods({
         editable: !User.findOne().editable
       }
     });
-    console.log(`Edit mode changed to ${User.findOne().editable}`);
+    console.log(`Edit mode set to ${User.findOne().editable}`);
     return User.findOne().editable;
   }
 });

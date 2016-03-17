@@ -3,5 +3,4 @@
   "fs-extra": "^0.26.5",
   "nightmare": "^2.2.0",
   "phantom": "^2.0.4",
-  "webdriverio": "^4.0.3"
 }

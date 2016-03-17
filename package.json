@@ -7,12 +7,12 @@
     "electrify": "^2.1.4",
     "fs-extra": "^0.26.5",
     "nightmare": "^2.2.0",
-    "phantom": "^2.0.4",
-    "webdriverio": "^4.0.3"
+    "phantom": "^2.0.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electrify --settings settings.json"
   },
   "repository": {
     "type": "git",
