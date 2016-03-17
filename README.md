@@ -8,7 +8,7 @@ A concept intended to make theme editing intuitive and productive without sacrif
 - [x] Edit source of current page
 - [x] Usable on trial and premium accounts
 
-### Disabled
+### Not working
 - [ ] Publish modifications
 - [ ] Edit unpublished themes
 - [ ] Live preview changes made from text editor into preview pane
