@@ -15,14 +15,13 @@ A concept intended to make theme editing intuitive and productive without sacrif
 - [ ] Dynamic sidebar widgets based on Liquid settings
 
 ## Downloads
-[Download the binary for OSx]()
+Download the binary for OSx
 
 ## Development
-Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https://github.com/electron-userland/electron-prebuilt) installed globally. You'll also need a [Shopify Partner](https://www.shopify.ca/partners) account to access the API.
+Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https://github.com/electron-userland/electron-prebuilt) installed globally. You'll also need a [Shopify Partner](https://www.shopify.ca/partners) account to access the API. No need to run `npm install` because Meteor installs that for you.
 
-1. `npm install`
-2. Edit `dev.settings.json` in the project's root directory with a your Shopify app key and secret
-3. Build the Meteor app `electrify --settings dev.settings.json`
+1. Edit `dev.settings.json` in the project's root directory with your Shopify app key and secret
+2. Run the Meteor app `electrify --settings dev.settings.json` (this will automatically install dependencies)
 
 ## Disclaimer
-I don't work at Shopify; in fact I'm only a mere mortal. This was built primarily to learn React + Meteor work together while testing my new scaffolding tool, [Comet](https://github.com/afang/comet).
+I don't work at Shopify; I'm a mere mortal trying to get better with React + Meteor while testing my scaffolding tool, [Comet](https://github.com/afang/comet).
