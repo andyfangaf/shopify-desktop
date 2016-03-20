@@ -18,8 +18,9 @@ A concept intended to make theme editing intuitive and productive without sacrif
 Download the binary for OSx
 
 ## Development
-Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https://github.com/electron-userland/electron-prebuilt) installed globally. You'll also need a [Shopify Partner](https://www.shopify.ca/partners) account to access the API. No need to run `npm install` because Meteor installs that for you.
+Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https://github.com/electron-userland/electron-prebuilt) installed globally. You'll also need a [Shopify Partner](https://www.shopify.ca/partners) account to access the API.
 
+1. Install dependencies `npm install`
 1. Edit `dev.settings.json` in the project's root directory with your Shopify app key and secret
 2. Run the Meteor app `electrify --settings dev.settings.json` (this will automatically install dependencies)
 
