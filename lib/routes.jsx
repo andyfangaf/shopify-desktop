@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
   name: 'Home',
   action() {
-    if (User.findOne().loggedIn === undefined) {
+    if (!User.findOne().loggedIn) {
       FlowRouter.go('/login');
       console.log(`Logged off`);
     } else {
@@ -13,7 +13,6 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
   name: 'Login',
   action() {
-    console.log(User.findOne().loggedIn);
     FlowRouter.go('/login');
     ReactLayout.render(LoginLayout);
     if (User.findOne().loggedIn) {

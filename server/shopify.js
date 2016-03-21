@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import Liquid from 'liquid-node';
-const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor
+const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor load order
 const Nightmare = Meteor.npmRequire('nightmare');
 const cheerio = Meteor.npmRequire('cheerio');
 const notifier = Meteor.npmRequire('node-notifier');
@@ -78,7 +78,7 @@ Meteor.methods({
         .click('#login_form [type="submit"]')
         .wait()
         .visible('#PageContainer')
-        .wait(1000)
+        .wait(1000) // form is appended to DOM with AJAX
         .evaluate(() => document.getElementsByTagName('html')[0].outerHTML)
         .end()
         .then((html) => {
@@ -89,9 +89,7 @@ Meteor.methods({
             head,
             body
           }
-          User.update({
-            loggedIn: true
-          }, {
+          User.update({ loggedIn: true }, {
             $set: {
               html: res
             }
@@ -102,9 +100,7 @@ Meteor.methods({
     });
   },
   changeScreenSize(size) {
-    User.update({
-      loggedIn: true
-    }, {
+    User.update({ loggedIn: true }, {
       $set: {
         screenSize: size
       }

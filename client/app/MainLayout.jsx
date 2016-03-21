@@ -1,17 +1,27 @@
-// We're using insecure to make development faster. Security's not a concern since in production it's packaged in Electron (without easy access dev tools) and the user only has access to data he owns.
+// We're using insecure to make development faster. Security's not a concern since in production it's packaged in Electron (without easy access dev tools) and the user only has access to data he owns.*/
 
-MainLayout = React.createClass({
+import React from 'react';
+
+MainLayout = class MainLayout extends React.Component {
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
       editable: User.findOne().editable || false
     }
-  },
+  }
   getInitialState() {
-    return {screenSize: 'desktop', published: false, editable: false, storeName: User.findOne().storeName}
-  },
+    return {
+      screenSize: 'desktop',
+      published: false,
+      editable: false,
+      storeName: User.findOne().storeName
+    }
+  }
   componentDidMount() {
-    sweetAlert({title: 'Logged in', type: 'success'});
+    sweetAlert({
+      title: 'Logged in',
+      type: 'success'
+    });
 
     // Set size of sidebar and throttle resizing
     let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
@@ -22,7 +32,7 @@ MainLayout = React.createClass({
     }, 50));
     let component = this;
     // Hardcoded sidebar interation
-    $('iframe').load(function() {
+    $('iframe').load(() => {
       $(this).contents().find('body').on('click', function(e) {
         console.log(component.state);
         if (component.data.editable == true) {
@@ -31,18 +41,17 @@ MainLayout = React.createClass({
         component.setState({published: false});
       });
     });
-
-  },
+  }
   switchMobile() {
     this.setState({screenSize: 'mobile'})
-  },
+  }
   switchDesktop() {
     this.setState({screenSize: 'desktop'})
-  },
+  }
   publishToShopify() {
     // Electrify.call('notify', `Published ${this.state.storeName}`, `Live on https://${this.state.storeName}.my-shopify.com`);
     this.setState({published: true});
-  },
+  }
   widgetIn() {
     $header = $('.ui.sidebar .header');
     $content = $('.ui.sidebar .content');
@@ -71,9 +80,9 @@ MainLayout = React.createClass({
       duration: 300,
       opacity: 1
     });
-  },
+  }
   render() {
-    let storeUrl = `https://${this.state.storeName}.myshopify.com/admin`;
+    const storeUrl = `https://${this.state.storeName}.myshopify.com/admin`;
     return (
       <div className="main">
         <div className="ui sidebar inverted vertical menu fixed right wide visible">
@@ -108,23 +117,20 @@ MainLayout = React.createClass({
             <div className="ui container">
               <div className="ui text menu">
                 <div className="header item" style={this.data.editable
-                  ? {
-                    color: '#fff'
-                  }
-                  : null}>
+                  ? { color: '#fff' }: null}>
                   <i className={this.data.editable
                     ? 'ui icon edit'
-                    : 'ui icon idea'}></i>{this.data.editable
+                  : 'ui icon idea'}></i>{this.data.editable
                     ? 'EDIT MODE'
-                    : 'PREVIEW MODE'}</div>
+                  : 'PREVIEW MODE'}</div>
                 <a className={this.state.screenSize == 'desktop'
                   ? 'active item'
-                  : 'item'} onClick={this.switchDesktop}>
+                : 'item'} onClick={this.switchDesktop}>
                   <i className="ui icon desktop"></i>Desktop
                 </a>
                 <a className={this.state.screenSize == 'mobile'
                   ? 'active item'
-                  : 'item'} onClick={this.switchMobile}>
+                : 'item'} onClick={this.switchMobile}>
                   <i className="ui icon mobile"></i>
                   Mobile
                 </a>
@@ -137,7 +143,7 @@ MainLayout = React.createClass({
                   <a className="item" onClick={this.publishToShopify}>
                     <span className={this.state.published
                       ? 'ui primary button disabled publish'
-                      : 'ui primary button publish'}>Publish to Shopify</span>
+                    : 'ui primary button publish'}>Publish to Shopify</span>
                   </a>
                 </div>
               </div>
@@ -147,4 +153,4 @@ MainLayout = React.createClass({
       </div>
     )
   }
-});
+};

@@ -1,15 +1,17 @@
-window.ondragstart = function() {
-  return false;
-}
+import React from 'react';
+// import classNames from 'classnames'; // Use jQuery since it's already required by Semantic-UI
 
-LoginLayout = React.createClass({
+LoginLayout = class LoginLayout extends React.Component {
   authenticate(e) {
     e.preventDefault();
     $('.submit.button').addClass('disabled');
     const storeName = ReactDOM.findDOMNode(this.refs.storeName).value.trim();
     Meteor.call('addKeyset', storeName, (err, keysetName) => {
       const authenticator = new Shopify.PublicAppOAuthAuthenticator({
-        shop: storeName, api_key: '53ea809b4180e0b1db2706a6fe5ffedb', keyset: 'auth', scopes: 'all', // request all permissions
+        shop: storeName,
+        api_key: '53ea809b4180e0b1db2706a6fe5ffedb',
+        keyset: 'auth',
+        scopes: 'all', // request all permissions
         onAuth(accessToken) {
           const auth = User.findOne();
           const shop = auth.storeName;
@@ -31,21 +33,19 @@ LoginLayout = React.createClass({
       });
       authenticator.openAuthTab();
     });
-  },
+  }
   componentDidMount() {
     $.Velocity.RegisterEffect('transition.flipYin', {
       defaultDuration: 700,
       calls: [
-        [{
-          opacity: 1
-        }]
+        [{ opacity: 1 }]
       ]
     });
     $('.slideIn').velocity('transition.flipYin', {
       stagger: 250,
       drag: true
     });
-  },
+  }
   render() {
     return (
       <div className="login">
@@ -64,8 +64,8 @@ LoginLayout = React.createClass({
         </div>
       </div>
     )
-  },
+  }
   componentDidMount() {
     $('.slideIn').velocity('transition.slideUpIn', {stagger: 250});
   }
-});
+}
