@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import Liquid from 'liquid-node';
-const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor load order
-const Nightmare = Meteor.npmRequire('nightmare');
+const phantom = Meteor.npmRequire('phantom'); // phantom promise library not working, webdriverio not working with Meteor load order.
+const Nightmare = Meteor.npmRequire('nightmare'); // requires "phantom"
 const cheerio = Meteor.npmRequire('cheerio');
 const notifier = Meteor.npmRequire('node-notifier');
 
@@ -78,7 +78,7 @@ Meteor.methods({
         .click('#login_form [type="submit"]')
         .wait()
         .visible('#PageContainer')
-        .wait(1000) // form is appended to DOM with AJAX
+        .wait(1000) // form is appended to DOM after AJAX request from Shopify
         .evaluate(() => document.getElementsByTagName('html')[0].outerHTML)
         .end()
         .then((html) => {

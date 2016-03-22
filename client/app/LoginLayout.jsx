@@ -1,5 +1,5 @@
 import React from 'react';
-// import classNames from 'classnames'; // Use jQuery since it's already required by Semantic-UI
+// import classNames from 'classnames'; // Use jQuery instead of refs since it's already required by Semantic-UI
 
 LoginLayout = class LoginLayout extends React.Component {
   authenticate(e) {

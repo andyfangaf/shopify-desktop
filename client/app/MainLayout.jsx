@@ -27,10 +27,10 @@ MainLayout = class MainLayout extends React.Component {
     let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
     $('.pusher').width(pusherWidth);
     $(window).on('resize', _.debounce(() => {
-      let pusherWidth = $(window).width() - $('.ui.sidebar').width() - 56;
       $('.pusher').width(pusherWidth);
     }, 50));
     let component = this;
+
     // Hardcoded sidebar interation
     $('iframe').load(() => {
       $(this).contents().find('body').on('click', function(e) {
@@ -41,6 +41,7 @@ MainLayout = class MainLayout extends React.Component {
         component.setState({published: false});
       });
     });
+
   }
   switchMobile() {
     this.setState({screenSize: 'mobile'})
