@@ -1,10 +1,6 @@
 // FEATURE IS DISABLED
 ThemeSelection = React.createClass({
   mixins: [ReactMeteorData],
-  componentDidMount() {
-    // $('.ui.basic.modal.theme-import').modal('setting', {closable: true}).modal('show');
-    // $('.ui.grid .column').velocity('transition.bounceLeftIn', {stagger: 100});
-  },
   getMeteorData() {
     return {
       user: User.findOne({
