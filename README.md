@@ -1,5 +1,5 @@
 # Shopify Desktop
-A concept intended to make theme editing intuitive and productive without sacrificing utility. [You can read the making of Shopify Desktop on Medium.]()
+A concept intended to make theme editing intuitive and productive without sacrificing utility. [You can read the making of Shopify Desktop on Medium.](https://medium.com/@AndyF/an-intuitive-design-workflow-with-shopify-desktop-e48d8ebc5536)
 
 ![](http://puu.sh/nokTK/73dea38d06.png)
 
