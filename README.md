@@ -25,4 +25,4 @@ Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https
 2. Run the Meteor app `electrify --settings dev.settings.json` (this will automatically install dependencies)
 
 ## Disclaimer
-I don't work at Shopify; I'm a mere mortal trying to get better with React + Meteor while testing my scaffolding tool, [Comet](https://github.com/afang/comet).
+This is not an official desktop app. It was built as part of my internship application (I now work here full time) :)
