@@ -25,4 +25,4 @@ Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https
 2. Run the Meteor app `electrify --settings dev.settings.json` (this will automatically install dependencies)
 
 ## Disclaimer
-This is not an official desktop app. It was built as part of my internship application (I now work here full time) :)
+This was built before the official Shopify desktop app. It was built as part of my internship application (which I've since joined full time).
