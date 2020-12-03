@@ -1,3 +1,8 @@
+## Disclaimer
+This was built before the official Shopify desktop app. It was built as part of my internship application, shortly after I dropped out of high school and found myself looking for work.
+
+I hacked this together quickly so don't judge. :P
+
 # Shopify Desktop
 A concept intended to make theme editing intuitive and productive without sacrificing utility. [You can read the making of Shopify Desktop on Medium.](https://medium.com/@AndyF/an-intuitive-design-workflow-with-shopify-desktop-e48d8ebc5536)
 
@@ -23,8 +28,3 @@ Make sure you have [Meteor](https://www.meteor.com/install) and [Electron](https
 1. Install dependencies `npm install`
 1. Edit `dev.settings.json` in the project's root directory with your Shopify app key and secret
 2. Run the Meteor app `electrify --settings dev.settings.json` (this will automatically install dependencies)
-
-## Disclaimer
-This was built before the official Shopify desktop app. It was built as part of my internship application after I dropped out of high school and found myself in need of a gig.
-
-I hacked this together in a week so not very proud of the code... but it got me the job!
