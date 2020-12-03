@@ -1,7 +1,7 @@
 ## Disclaimer
 This was built before the official Shopify desktop app. It was built as part of my internship application, shortly after I dropped out of high school and found myself looking for work.
 
-I hacked this together quickly so don't judge. :P
+I hacked this together quickly a long time ago so don't judge. :P
 
 # Shopify Desktop
 A concept intended to make theme editing intuitive and productive without sacrificing utility. [You can read the making of Shopify Desktop on Medium.](https://medium.com/@AndyF/an-intuitive-design-workflow-with-shopify-desktop-e48d8ebc5536)
